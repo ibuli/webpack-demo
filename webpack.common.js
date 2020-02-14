@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require("path");
 
 module.exports = {
   entry: "./src/index.js",
@@ -15,6 +14,21 @@ module.exports = {
           "css-loader",   // 2. Turns css into commonjs
           "sass-loader"   // 1. Turns Sass into css
         ]
+      },
+      {
+        test: /\.html$/,
+        use: ["html-loader"]
+      },
+      {
+        test: /\.(svg|png|jpg|jpeg|gif)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            esModule: false,
+            name: "[name].[hash].[ext]",
+            outputPath: "images"
+          }
+        }
       }
     ]
   }
